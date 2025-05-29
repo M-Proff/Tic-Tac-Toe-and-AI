@@ -14,12 +14,7 @@ A modern, responsive Tic Tac Toe game featuring a glowing neon UI and an AI oppo
 
 ---
 
-## Demo
 
-![Gameplay Screenshot](screenshot.png)  
-*(Add your screenshot image in the repo and update path accordingly)*
-
----
 
 ## Installation
 
