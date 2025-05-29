@@ -1,0 +1,185 @@
+/* Reset and allow scrolling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* enable vertical scrolling */
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #1e1e2f, #27293d);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Particle canvas stays behind */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Navigation bar with shadow and padding */
+nav {
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    height: 100px;
+    max-height: 100px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(238, 9, 121, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glowing animated heading text */
+nav h2 {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 7vw;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow:
+        0 0 5px #ff6a00,
+        0 0 10px #ff6a00,
+        0 0 20px #ee0979,
+        0 0 30px #ee0979,
+        0 0 40px #ff6a00,
+        0 0 55px #ee0979,
+        0 0 75px #ff6a00;
+    animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+/* Glow pulse animation */
+@keyframes glowPulse {
+    0% {
+        text-shadow:
+            0 0 5px #ff6a00,
+            0 0 10px #ff6a00,
+            0 0 20px #ee0979,
+            0 0 30px #ee0979,
+            0 0 40px #ff6a00,
+            0 0 55px #ee0979,
+            0 0 75px #ff6a00;
+    }
+    100% {
+        text-shadow:
+            0 0 10px #ff6a00,
+            0 0 20px #ff6a00,
+            0 0 30px #ee0979,
+            0 0 40px #ee0979,
+            0 0 50px #ff6a00,
+            0 0 70px #ee0979,
+            0 0 90px #ff6a00;
+    }
+}
+
+/* Space for separation */
+.space {
+    height: 60px;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+/* Game container with responsive sizing */
+.gameContainer {
+    max-width: 430px;
+    width: 90vw; /* scales with viewport */
+    max-height: 430px;
+    height: auto;  /* height adjusts with content */
+    margin: 40px auto 0; /* breathing space from top */
+    position: relative;
+    z-index: 2;
+    background: rgba(30, 30, 47, 0.85);
+    border-radius: 20px;
+    box-shadow:
+        0 0 15px rgba(238, 9, 121, 0.6),
+        inset 0 0 10px rgba(255, 106, 0, 0.5);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Grid container scales with game container */
+.container {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Individual boxes scale to fill container grid */
+.box {
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ff6a00, #ee0979);
+    box-shadow:
+        3px 3px 10px #c14856,
+        -3px -3px 10px #ff8c6e;
+    color: white;
+    font-size: 8vw; /* responsive font size */
+    min-height: 60px; /* minimum size on very small screens */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    user-select: none;
+}
+
+/* Hover effect: scale and stronger glow */
+.box:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 0 15px #ff6a00,
+        0 0 20px #ee0979,
+        0 0 30px #ff6a00;
+}
+
+/* Remove specific borders as before */
+.br-0 {
+    border-right: 0;
+}
+
+.bl-0 {
+    border-left: 0;
+}
+
+.bt-0 {
+    border-top: 0;
+}
+
+.bb-0 {
+    border-bottom: 0;
+}
+
+/* Status message below the game container */
+#statusMessage {
+    max-width: 430px;
+    width: 90vw;
+    margin: 20px auto 40px; /* space below for scrolling */
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    border-radius: 15px;
+    box-shadow:
+        0 0 15px #ff6a00,
+        0 0 30px #ee0979;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 3;
+    position: relative;
+}
+
+#statusMessage.show {
+    opacity: 1;
+}
